@@ -1,0 +1,111 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+var teste = false
+var valor = 0
+var numero = 0 #não tem acento 
+var lista = [] #faltou o var
+var nome = \"Lucas\"
+
+func _on_Button_pressed():
+	#Coletando dados inseridos pelo usuário
+	numero = int($LineEdit.text) #não tem acento e $ antes do LineEdit
+	$LineEdit.text = nome
+
+func _on_Button2_pressed():
+	#Incrementando o número inserido pelo usuário
+	for i in range(10):
+		numero=numero+1 #somar 1 e não i
+		lista.append(numero)
+		$ColorReact/Label.text += str(lista[i])+\"\\n\" # += e faltou identação
+
+
+func _on_Button3_pressed():
+	#Mudando o nome do usuário de acordo com os dados da lista
+	#Se houver algum número ímpar o nome deve adicionar \"baldo\" ao final
+	for i in range(len(lista)): #faltou condição e incremento no laço 
+		if (lista[i]%2==1): 
+			$ColorReact2/Label.text+=str(nome)+\"baldo\"+\"\\n\" # '+='
+		else: 
+			$ColorReact2/Label.text+=str(nome)+ \"\\n\"
+"
+
+[node name="Node2D" type="Node2D"]
+script = SubResource( 1 )
+
+[node name="Button" type="Button" parent="."]
+margin_left = 401.0
+margin_top = 502.0
+margin_right = 626.0
+margin_bottom = 560.0
+text = "Clique aqui"
+
+[node name="entrada1" type="LineEdit" parent="."]
+margin_left = 270.0
+margin_top = 198.0
+margin_right = 402.0
+margin_bottom = 255.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="entrada1"]
+margin_left = 5.0
+margin_top = -36.0
+margin_right = 112.0
+margin_bottom = -5.0
+text = "Dado 1
+"
+
+[node name="entrada2" type="LineEdit" parent="."]
+margin_left = 403.0
+margin_top = 195.0
+margin_right = 634.0
+margin_bottom = 255.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="entrada2"]
+margin_left = 15.0
+margin_top = -43.0
+margin_right = 237.0
+margin_bottom = -5.0
+text = "Dado 2
+"
+
+[node name="entrada3" type="LineEdit" parent="."]
+margin_left = 633.0
+margin_top = 197.0
+margin_right = 765.0
+margin_bottom = 256.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="entrada3"]
+margin_left = 5.0
+margin_top = -37.0
+margin_right = 192.0
+margin_bottom = -5.0
+text = "Dado 3
+"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+self_modulate = Color( 0.996078, 0.968627, 0.968627, 1 )
+margin_left = 270.0
+margin_top = 258.0
+margin_right = 765.0
+margin_bottom = 481.0
+
+[node name="resultado" type="Label" parent="ColorRect"]
+modulate = Color( 0.0627451, 0.0196078, 0.0196078, 1 )
+margin_left = 26.0
+margin_top = 18.0
+margin_right = 483.0
+margin_bottom = 206.0
+text = "KSKSKSKSKSS"
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
